@@ -4,3 +4,9 @@
 @theme{
   --color-primary:oklch(57.7% 0.245 27.325);
 }
+@layer utilities {
+.container{
+  @apply p-[1rem] sm:p-[3rem]
+}
+ 
+}
