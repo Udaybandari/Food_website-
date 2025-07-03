@@ -6,7 +6,7 @@
 }
 @layer utilities {
 .container{
-  @apply p-[1rem] sm:p-[3rem]
+  @apply p-[0.5rem] sm:p-[1rem]
 }
  
 }
