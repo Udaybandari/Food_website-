@@ -1,22 +1,40 @@
-import React from 'react'
+import React from 'react';
 
-const Under = ({items=[]}) => {
+const Under = ({ items = [] }) => {
   return (
-     <div className='hidden group-hover:block transition-all duration-300 ease-in-out absolute top-12 w-[200px] text-black bg-white shadow-1xl   dark:bg-gradient-to-b from-black via-gray-900 to-gray-800 dark:text-white text-2xl rounded-md '> 
-        <div className='container   '>
-            <ul className='space-y-2 p-2'>
-                {
-                    items.map((data)=>(
-                      <li key={data.id} className='hover:text-blue-400 text-[15px] font-semibold font-sans'>
-                        <a href=""> {data.name}</a>
-                      </li>
+    <div
+      className="
+        hidden group-hover:block 
+        transition-all duration-300 ease-in-out
+        absolute top-12
+        w-52
+        bg-white text-black 
+        dark:bg-gradient-to-b dark:from-black dark:via-gray-900 dark:to-gray-800 dark:text-white
+        rounded-md shadow-xl 
+        backdrop-blur-sm bg-opacity-95
+        z-50
+      "
+    >
+      <ul className="flex flex-col">
+        {items.map((data) => (
+          <li key={data.id}>
+            <a
+              href="#"
+              className="
+                block px-4 py-2
+                text-[15px] font-semibold font-sans
+                hover:bg-gray-100 dark:hover:bg-black/30
+                hover:text-blue-500
+                transition-colors duration-200
+              "
+            >
+              {data.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-                    ))
-                }
-            </ul>
-        </div>
-     </div>
-  )
-}
-
-export default Under
+export default Under;

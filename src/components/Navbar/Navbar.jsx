@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import image1 from '../../assets/navbar1.png';
-
+import { IoIosArrowUp } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
+import { FiMenu, FiX } from "react-icons/fi";
 import Darkbutton from './Darkbutton';
 import Under from './Under';
+import { IoIosArrowDown } from "react-icons/io";
 
 // Dropdown menus
 const lister = [
@@ -30,6 +32,7 @@ const lists = [
   { id: 5, name: "HEALTHY&DIET" },
   { id: 6, name: "SEASONAL" },
 ];
+
 const lister3 = [
   { id: 1, name: "Keto Recipes" },
   { id: 2, name: "Healthy Recipes" },
@@ -40,6 +43,7 @@ const lister3 = [
   { id: 7, name: "Low-Carb Recipes" },
   { id: 8, name: "Gluten-Free Recipes" },
 ];
+
 const lister5 = [
   { id: 1, name: "Chicken Recipes" },
   { id: 2, name: "Salmon Recipes" },
@@ -47,6 +51,7 @@ const lister5 = [
   { id: 4, name: "Ground Beef Recipes" },
   { id: 5, name: "Shrimp Recipes" },
 ];
+
 const lister6 = [
   { id: 1, name: "Spring Recipes" },
   { id: 2, name: "Summer Recipes" },
@@ -54,63 +59,119 @@ const lister6 = [
   { id: 4, name: "Winter Recipes" },
 ];
 
-
-// Make sure you have enough dropdown arrays for each link
-const dropdowns = [[],lister, lister2,  lister5, lister3, lister6];
+const dropdowns = [[], lister, lister2, lister5, lister3, lister6];
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const[openclose,setOpenclose]=useState(null);
+  console.log(openclose)
   return (
-    <nav className='bg-white dark:bg-gray-900 shadow-2xl dark:text-white duration-200'>
-      <div className='container sm:py-0 py-3'>
-        <div className='flex justify-between items-center'>
+    <nav className="bg-white dark:bg-gray-900 shadow-2xl dark:text-white duration-200 relative z-50">
+      <div className="container flex justify-between items-center py-3">
 
-          {/* Left section */}
-          <div>
-            <a
-              href="#"
-              className='flex flex-row gap-2 text-2xl sm:text-3xl font-bold'
-              aria-label="Go to homepage"
-            >
-              <img src={image1} className='w-10' alt="Foodie Logo" />
-              FOODIE
-            </a>
-          </div>
+        {/* Logo */}
+        <a
+          href="#"
+          className="flex flex-row gap-2 sm:text-6xl text-2xl font-bold"
+          aria-label="Go to homepage"
+        >
+          <img src={image1} className="w-10 sm:w-14" alt="Foodie Logo" />
+          FOODIE
+        </a>
 
-          {/* Right section */}
-          <div className='flex items-center gap-8'>
-            <ul className='hidden sm:flex gap-4'>
-              {lists.map((dr, index) => (
-                <li key={dr.id} className='flex group flex-col relative'>
-                  <a
-                    href="#"
-                    className='py-4 px-4 inline-block  hover:underline decoration-5 decoration-blue-400 text-2xl font-mono'
-                  >
-                    {dr.name}
-                  </a>
-
-                  {/* Safe dropdown */}
-                  {dropdowns[index]?.length > 0 && (
-                    <Under items={dropdowns[index]} />
-                  )}
-                </li>
-              ))}
-            </ul>
-
-            {/* Order button */}
-            <div className='bg-gradient-to-r gap-2 group flex from-amber-400 via-amber-500 to-amber-800 px-4 py-2 rounded-full hover:scale-105 transition-transform'>
-              <button
-                className='hidden group-hover:block text-white'
-                aria-label="Order now"
+        {/* Nav Links (desktop) */}
+        <ul className="hidden xl:flex gap-4">
+          {lists.map((dr, index) => (
+            <li key={dr.id} className="flex group flex-col relative">
+              <a
+                href="#"
+                className="py-4 px-4 inline-block hover:underline decoration-5 decoration-blue-400 text-2xl font-mono"
               >
-                Order
-              </button>
-              <FaCartShopping className='text-white text-2xl' />
-            </div>
+                {dr.name}
+              </a>
+              {dropdowns[index]?.length > 0 && (
+                <Under items={dropdowns[index]} />
+              )}
+            </li>
+          ))}
+        </ul>
 
-            <Darkbutton />
+        {/* Right side: Cart + Dark + Hamburger */}
+        <div className="flex items-center gap-4">
+
+          {/* Order button */}
+          <div className="bg-gradient-to-r gap-2 group flex from-amber-400 via-amber-500 to-amber-800 px-4 py-2 rounded-full hover:scale-105 transition-transform">
+            <button
+              className="hidden group-hover:block text-white"
+              aria-label="Order now"
+            >
+              Order
+            </button>
+            <FaCartShopping className="text-white text-2xl" />
           </div>
+
+          <Darkbutton />
+
+          {/* Hamburger: visible only below xl */}
+          <button 
+            className="xl:hidden text-2xl relative"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+     {mobileMenuOpen && (
+        <div className="absolute top-12 right-0 rounded-md    bg-white dark:bg-gray-950 px-6 py-3 shadow-lg">
+          <ul className="space-y-2">
+           {lists.map((dr, index) => (
+  <li key={dr.id} className="flex flex-col">
+    <div className="flex justify-between items-center w-full border-b border-gray-900 dark:border-white py-2">
+      <a
+        href="#"
+        className="text-[12px] font-semibold hover:bg-red-200"
+      >
+        {dr.name}
+      </a>
+      {dropdowns[index]?.length > 0 && (
+        <button
+          onClick={() =>
+            setOpenclose(openclose === index ? null : index)
+          }
+        >
+          {openclose === index ? (
+            <IoIosArrowUp className=" cursor-pointer" />
+          ) : (
+            <IoIosArrowDown className="cursor-pointer" />
+          )}
+        </button>
+      )}
+    </div>
+
+    {openclose === index && dropdowns[index].length > 0 && (
+      <div className="ml-4 border-l-2 border-gray-200 dark:border-gray-700">
+        <ul className="space-y-1 pl-2">
+          {dropdowns[index].map((item) => (
+            <li key={item.id } className='font-semibold py-1  '>
+              <a
+                href="#"
+                className="text-sm    "
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </li>
+))}
+  </ul>
+        </div>
+      )}
     </nav>
   );
 };
