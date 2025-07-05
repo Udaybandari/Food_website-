@@ -2,11 +2,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme{
-  --color-primary:oklch(57.7% 0.245 27.325);
+  --color-primary:oklch(79.5% 0.184 86.047);
 }
 @layer utilities {
 .container{
   @apply p-[0.5rem] sm:p-[1rem]
 }
- 
+ .outlinebutton{
+  @apply rounded-2xl bg-primary px-2 py-2 hover:bg-amber-500 font-semibold hover:scale-105 dark:text-black
+}
 }
