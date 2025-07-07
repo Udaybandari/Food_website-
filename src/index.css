@@ -1,14 +1,33 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+ 
+  --animate-spin: spin 40s linear infinite;
+}
 @theme{
-  --color-primary:oklch(79.5% 0.184 86.047);
+   --color-primary: oklch(79.5% 0.184 86.047);
 }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @layer utilities {
-.container{
-  @apply p-[0.5rem] sm:p-[1rem]
-}
- .outlinebutton{
-  @apply rounded-2xl bg-primary px-2 py-2 hover:bg-amber-500 font-semibold hover:scale-105 dark:text-black
-}
+  
+  .container {
+    @apply px-[3rem] sm:px-[3rem];
+  }
+
+  .outlinebutton {
+    background: var(--color-primary);
+    @apply rounded-2xl px-2 py-2 hover:bg-amber-500 font-semibold hover:scale-105 dark:text-black;
+  }
+
+  .spinner {
+    animation: var(--animate-spin);
+  } 
+  
 }
