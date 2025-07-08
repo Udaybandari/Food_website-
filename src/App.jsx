@@ -8,6 +8,7 @@ import Services from './components/Services/Services'
 import AOS from "aos";
 import "aos/dist/aos.css"
 import Order from './components/Order/Order';
+import Appstore from './components/Appstore/Appstore';
 function App() {
     React.useEffect(()=>{
         AOS.init({
@@ -24,6 +25,7 @@ function App() {
     <Hero/>
     <Services/>
      <Order/>
+     <Appstore/>
    </div>
   )
 }
