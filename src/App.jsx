@@ -9,6 +9,8 @@ import AOS from "aos";
 import "aos/dist/aos.css"
 import Order from './components/Order/Order';
 import Appstore from './components/Appstore/Appstore';
+import Tesimonial from './components/Testimonial/Tesimonial';
+import Footer from './components/Footer/Footer';
 function App() {
     React.useEffect(()=>{
         AOS.init({
@@ -26,6 +28,8 @@ function App() {
     <Services/>
      <Order/>
      <Appstore/>
+     <Tesimonial/>
+     <Footer/>
    </div>
   )
 }
