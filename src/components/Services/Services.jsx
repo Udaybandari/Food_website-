@@ -22,7 +22,7 @@ const Images=[
 const Services = () => {
       
   return (
-    <div className='bg-gray-100 dark:bg-gray-950 text-black dark:text-white flex justify-center items-center gap-3   '>
+    <div  className='bg-gray-100 dark:bg-gray-950 text-black dark:text-white flex justify-center items-center gap-3   '>
         <div className='container flex  flex-col items-center  justify-center mt-12 gap-1'>
             <div className='flex flex-col items-center justify-center gap-2'>
                <p className='text-primary'>our services</p>
@@ -33,7 +33,7 @@ const Services = () => {
             <div className='grid grid-cols-1 sm:grid-cols-3 place-items-center  w-full mt-22 ' >
                 {
                    Images.map((item)=>(
-                    <div key={item.id } className='w-[330px]  rounded-2xl hover:bg-primary   h-[200px] m-3   flex flex-col items-center justify-center relative  shadow-2xl  '>
+                    <div key={item.id } data-aos="zoom-out" className='w-[330px] dark:bg-gray-700   rounded-2xl hover:bg-primary   h-[200px] m-3   flex flex-col items-center justify-center relative  shadow-2xl  '>
                      
                          <img src={item.imager} className='w-[200px] -top-1/2 absolute translate-y-1 ' alt="" />
                     

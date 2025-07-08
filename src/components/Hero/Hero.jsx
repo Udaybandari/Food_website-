@@ -29,7 +29,7 @@ const Images=[
 const Hero = () => {
   const [state,useState]=React.useState(Images)
   return (
-    <div
+    <div data-aos="fade-in" data-aos-offset="200" data-aos-easing="ease-in-sine"
       style={bgimage}
       className="min-h-[550px] sm:min-h-[600px]  bg-gray-100 dark:bg-gray-950 dark:text-white duration-200 flex justify-center items-center"
     >
